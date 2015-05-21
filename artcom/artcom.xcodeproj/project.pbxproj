@@ -1,0 +1,445 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		96BBB5711B0DFFA1008F71EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BBB5701B0DFFA1008F71EE /* AppDelegate.swift */; };
+		96BBB5741B0DFFA1008F71EE /* artcom.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 96BBB5721B0DFFA1008F71EE /* artcom.xcdatamodeld */; };
+		96BBB5761B0DFFA1008F71EE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BBB5751B0DFFA1008F71EE /* ViewController.swift */; };
+		96BBB5791B0DFFA1008F71EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96BBB5771B0DFFA1008F71EE /* Main.storyboard */; };
+		96BBB57B1B0DFFA1008F71EE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96BBB57A1B0DFFA1008F71EE /* Images.xcassets */; };
+		96BBB57E1B0DFFA1008F71EE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96BBB57C1B0DFFA1008F71EE /* LaunchScreen.xib */; };
+		96BBB58A1B0DFFA1008F71EE /* artcomTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BBB5891B0DFFA1008F71EE /* artcomTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		96BBB5841B0DFFA1008F71EE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 96BBB5631B0DFFA0008F71EE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 96BBB56A1B0DFFA0008F71EE;
+			remoteInfo = artcom;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		96BBB56B1B0DFFA0008F71EE /* artcom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = artcom.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		96BBB56F1B0DFFA0008F71EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		96BBB5701B0DFFA1008F71EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		96BBB5731B0DFFA1008F71EE /* artcom.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = artcom.xcdatamodel; sourceTree = "<group>"; };
+		96BBB5751B0DFFA1008F71EE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		96BBB5781B0DFFA1008F71EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		96BBB57A1B0DFFA1008F71EE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		96BBB57D1B0DFFA1008F71EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		96BBB5831B0DFFA1008F71EE /* artcomTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = artcomTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		96BBB5881B0DFFA1008F71EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		96BBB5891B0DFFA1008F71EE /* artcomTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = artcomTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		96BBB5681B0DFFA0008F71EE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		96BBB5801B0DFFA1008F71EE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		96BBB5621B0DFFA0008F71EE = {
+			isa = PBXGroup;
+			children = (
+				96BBB56D1B0DFFA0008F71EE /* artcom */,
+				96BBB5861B0DFFA1008F71EE /* artcomTests */,
+				96BBB56C1B0DFFA0008F71EE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		96BBB56C1B0DFFA0008F71EE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				96BBB56B1B0DFFA0008F71EE /* artcom.app */,
+				96BBB5831B0DFFA1008F71EE /* artcomTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		96BBB56D1B0DFFA0008F71EE /* artcom */ = {
+			isa = PBXGroup;
+			children = (
+				96BBB5701B0DFFA1008F71EE /* AppDelegate.swift */,
+				96BBB5751B0DFFA1008F71EE /* ViewController.swift */,
+				96BBB5771B0DFFA1008F71EE /* Main.storyboard */,
+				96BBB57A1B0DFFA1008F71EE /* Images.xcassets */,
+				96BBB57C1B0DFFA1008F71EE /* LaunchScreen.xib */,
+				96BBB5721B0DFFA1008F71EE /* artcom.xcdatamodeld */,
+				96BBB56E1B0DFFA0008F71EE /* Supporting Files */,
+			);
+			path = artcom;
+			sourceTree = "<group>";
+		};
+		96BBB56E1B0DFFA0008F71EE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				96BBB56F1B0DFFA0008F71EE /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		96BBB5861B0DFFA1008F71EE /* artcomTests */ = {
+			isa = PBXGroup;
+			children = (
+				96BBB5891B0DFFA1008F71EE /* artcomTests.swift */,
+				96BBB5871B0DFFA1008F71EE /* Supporting Files */,
+			);
+			path = artcomTests;
+			sourceTree = "<group>";
+		};
+		96BBB5871B0DFFA1008F71EE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				96BBB5881B0DFFA1008F71EE /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		96BBB56A1B0DFFA0008F71EE /* artcom */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 96BBB58D1B0DFFA1008F71EE /* Build configuration list for PBXNativeTarget "artcom" */;
+			buildPhases = (
+				96BBB5671B0DFFA0008F71EE /* Sources */,
+				96BBB5681B0DFFA0008F71EE /* Frameworks */,
+				96BBB5691B0DFFA0008F71EE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = artcom;
+			productName = artcom;
+			productReference = 96BBB56B1B0DFFA0008F71EE /* artcom.app */;
+			productType = "com.apple.product-type.application";
+		};
+		96BBB5821B0DFFA1008F71EE /* artcomTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 96BBB5901B0DFFA1008F71EE /* Build configuration list for PBXNativeTarget "artcomTests" */;
+			buildPhases = (
+				96BBB57F1B0DFFA1008F71EE /* Sources */,
+				96BBB5801B0DFFA1008F71EE /* Frameworks */,
+				96BBB5811B0DFFA1008F71EE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				96BBB5851B0DFFA1008F71EE /* PBXTargetDependency */,
+			);
+			name = artcomTests;
+			productName = artcomTests;
+			productReference = 96BBB5831B0DFFA1008F71EE /* artcomTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		96BBB5631B0DFFA0008F71EE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = "Sébastien Gagneur";
+				TargetAttributes = {
+					96BBB56A1B0DFFA0008F71EE = {
+						CreatedOnToolsVersion = 6.3.1;
+					};
+					96BBB5821B0DFFA1008F71EE = {
+						CreatedOnToolsVersion = 6.3.1;
+						TestTargetID = 96BBB56A1B0DFFA0008F71EE;
+					};
+				};
+			};
+			buildConfigurationList = 96BBB5661B0DFFA0008F71EE /* Build configuration list for PBXProject "artcom" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 96BBB5621B0DFFA0008F71EE;
+			productRefGroup = 96BBB56C1B0DFFA0008F71EE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				96BBB56A1B0DFFA0008F71EE /* artcom */,
+				96BBB5821B0DFFA1008F71EE /* artcomTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		96BBB5691B0DFFA0008F71EE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96BBB5791B0DFFA1008F71EE /* Main.storyboard in Resources */,
+				96BBB57E1B0DFFA1008F71EE /* LaunchScreen.xib in Resources */,
+				96BBB57B1B0DFFA1008F71EE /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		96BBB5811B0DFFA1008F71EE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		96BBB5671B0DFFA0008F71EE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96BBB5761B0DFFA1008F71EE /* ViewController.swift in Sources */,
+				96BBB5711B0DFFA1008F71EE /* AppDelegate.swift in Sources */,
+				96BBB5741B0DFFA1008F71EE /* artcom.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		96BBB57F1B0DFFA1008F71EE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96BBB58A1B0DFFA1008F71EE /* artcomTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		96BBB5851B0DFFA1008F71EE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 96BBB56A1B0DFFA0008F71EE /* artcom */;
+			targetProxy = 96BBB5841B0DFFA1008F71EE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		96BBB5771B0DFFA1008F71EE /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				96BBB5781B0DFFA1008F71EE /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		96BBB57C1B0DFFA1008F71EE /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				96BBB57D1B0DFFA1008F71EE /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		96BBB58B1B0DFFA1008F71EE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		96BBB58C1B0DFFA1008F71EE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		96BBB58E1B0DFFA1008F71EE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = artcom/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		96BBB58F1B0DFFA1008F71EE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = artcom/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		96BBB5911B0DFFA1008F71EE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = artcomTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/artcom.app/artcom";
+			};
+			name = Debug;
+		};
+		96BBB5921B0DFFA1008F71EE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = artcomTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/artcom.app/artcom";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		96BBB5661B0DFFA0008F71EE /* Build configuration list for PBXProject "artcom" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				96BBB58B1B0DFFA1008F71EE /* Debug */,
+				96BBB58C1B0DFFA1008F71EE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		96BBB58D1B0DFFA1008F71EE /* Build configuration list for PBXNativeTarget "artcom" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				96BBB58E1B0DFFA1008F71EE /* Debug */,
+				96BBB58F1B0DFFA1008F71EE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		96BBB5901B0DFFA1008F71EE /* Build configuration list for PBXNativeTarget "artcomTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				96BBB5911B0DFFA1008F71EE /* Debug */,
+				96BBB5921B0DFFA1008F71EE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		96BBB5721B0DFFA1008F71EE /* artcom.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				96BBB5731B0DFFA1008F71EE /* artcom.xcdatamodel */,
+			);
+			currentVersion = 96BBB5731B0DFFA1008F71EE /* artcom.xcdatamodel */;
+			path = artcom.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 96BBB5631B0DFFA0008F71EE /* Project object */;
+}
