@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>F88804D7-C6D2-480E-846D-D6921B0F239D</string>
+	<key>IDESourceControlProjectName</key>
+	<string>project</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>C4B535B427E05DDCB673CD86748635BE9888DF0F</key>
+		<string>https://github.com/sebastien-gagneur/artcomapp.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>artcom/artcom.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>C4B535B427E05DDCB673CD86748635BE9888DF0F</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/sebastien-gagneur/artcomapp.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>C4B535B427E05DDCB673CD86748635BE9888DF0F</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>C4B535B427E05DDCB673CD86748635BE9888DF0F</string>
+			<key>IDESourceControlWCCName</key>
+			<string>artcomapp</string>
+		</dict>
+	</array>
+</dict>
+</plist>

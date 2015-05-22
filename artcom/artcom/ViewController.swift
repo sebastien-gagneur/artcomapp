@@ -2,44 +2,52 @@
 //  ViewController.swift
 //  artcom
 //
-//  Created by Sébastien Gagneur on 21/05/2015.
+//  Created by Sébastien Gagneur on 03/03/2015.
 //  Copyright (c) 2015 Sébastien Gagneur. All rights reserved.
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
-class ViewController: UITableViewController {
-
-    override func viewDidLoad() {
+class ViewController : UITableViewController {
+    
+    
+    
+     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        Alamofire.request(.GET, "http://techspeech.alwaysdata.net/apiartcom/artcom/articles/root/QMBD35BEI/seb/seb").responseJSON() {
+            (_, _, data, _) in
+            let json = JSON(data!)
+            println(json)
+            let tab = json["articles"][0]["title"]
+            println("tab \(tab)")
+            let count = json["articles"].array!.count
+            println("count : \(count)")
+        // créer les objets
+        }
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    //TABLEVIEW
-    
-    // number of row to display from collection
+    //COUNT
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1;
+        return 0
     }
     
+    //INSERT
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return UITableViewCell();
+        return UITableViewCell()
     }
     
-    // DELETE articles
+    //DELETE
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         
     }
     
-    // SEGUE
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-    }
-
 }
-
