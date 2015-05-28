@@ -17,6 +17,11 @@
 		96E185CA1B0E6F7500C676A4 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96E185C31B0E6F6C00C676A4 /* Alamofire.framework */; };
 		96E185CC1B0E711600C676A4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E185CB1B0E711600C676A4 /* ViewController.swift */; };
 		96E185DC1B0E742F00C676A4 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96E185D51B0E742300C676A4 /* SwiftyJSON.framework */; };
+		96F1B2651B1653E900577AA9 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F1B2641B1653E900577AA9 /* SettingViewController.swift */; };
+		96F334661B138D6A002BB234 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F334651B138D6A002BB234 /* DetailViewController.swift */; };
+		96F334701B1395F1002BB234 /* WhereViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F3346F1B1395F1002BB234 /* WhereViewController.swift */; };
+		96F507A81B10E8D700EB1334 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F507A71B10E8D700EB1334 /* Article.swift */; };
+		96F507AA1B110E9F00EB1334 /* APIcontroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F507A91B110E9F00EB1334 /* APIcontroller.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +105,11 @@
 		96E185BB1B0E6F6C00C676A4 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "../../../../../../Downloads/Alamofire-master/Alamofire.xcodeproj"; sourceTree = "<group>"; };
 		96E185CB1B0E711600C676A4 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		96E185CD1B0E742300C676A4 /* SwiftyJSON.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftyJSON.xcodeproj; path = "../../../../../../Downloads/SwiftyJSON-master-3/SwiftyJSON.xcodeproj"; sourceTree = "<group>"; };
+		96F1B2641B1653E900577AA9 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		96F334651B138D6A002BB234 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		96F3346F1B1395F1002BB234 /* WhereViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhereViewController.swift; sourceTree = "<group>"; };
+		96F507A71B10E8D700EB1334 /* Article.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
+		96F507A91B110E9F00EB1334 /* APIcontroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIcontroller.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,9 +156,14 @@
 			isa = PBXGroup;
 			children = (
 				967CCC861B0E3418009C76DC /* Info.plist */,
+				96F507A71B10E8D700EB1334 /* Article.swift */,
 				96BBB5701B0DFFA1008F71EE /* AppDelegate.swift */,
 				96BBB5771B0DFFA1008F71EE /* Main.storyboard */,
+				96F334651B138D6A002BB234 /* DetailViewController.swift */,
+				96F1B2641B1653E900577AA9 /* SettingViewController.swift */,
+				96F3346F1B1395F1002BB234 /* WhereViewController.swift */,
 				96E185CB1B0E711600C676A4 /* ViewController.swift */,
+				96F507A91B110E9F00EB1334 /* APIcontroller.swift */,
 				96BBB57A1B0DFFA1008F71EE /* Images.xcassets */,
 				96BBB57C1B0DFFA1008F71EE /* LaunchScreen.xib */,
 				96BBB5721B0DFFA1008F71EE /* artcom.xcdatamodeld */,
@@ -374,8 +389,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96F334701B1395F1002BB234 /* WhereViewController.swift in Sources */,
+				96F507A81B10E8D700EB1334 /* Article.swift in Sources */,
 				96BBB5711B0DFFA1008F71EE /* AppDelegate.swift in Sources */,
+				96F1B2651B1653E900577AA9 /* SettingViewController.swift in Sources */,
 				96BBB5741B0DFFA1008F71EE /* artcom.xcdatamodeld in Sources */,
+				96F334661B138D6A002BB234 /* DetailViewController.swift in Sources */,
+				96F507AA1B110E9F00EB1334 /* APIcontroller.swift in Sources */,
 				96E185CC1B0E711600C676A4 /* ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
