@@ -31,4 +31,22 @@ class APIController : NSObject {
             println("JSON")
             }
     }
+    
+    func PutAPIResultsAsync(URIString:String?) {
+    println("API")
+        var manager = Manager.sharedInstance
+        // Specifying the Headers we need
+        manager.session.configuration.HTTPAdditionalHeaders = [
+            "Content-Type": "application/x-www-form-urlencoded",
+            "Accept" : "application/json"]
+        var urlString : String?
+        urlString = URIString
+        urlString = urlString!.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
+        Alamofire.request(.PUT,urlString!, parameters: nil, encoding : .URL ).responseString { (request, response, data, error) in
+                println("REQUEST : \(request)")
+                println("RESPONSE : \(response)")
+                println("DATA \(data)") // permet d'afficher le message d'erreur en remplaçant .response... par .responseString
+                println("ERROR : \(error)")
+            }
+    }
 }

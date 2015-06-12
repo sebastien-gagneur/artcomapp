@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Alamofire
+//import Alamofire
 import SwiftyJSON
 
 class ViewController : UITableViewController, APIControllerProtocol {

@@ -17,6 +17,7 @@ class DetailViewController: UITableViewController {
     var category : Int?
     var text : String?
     var rate : Int?
+    
 
     @IBOutlet var titleTextField: UITextField!
     
@@ -47,8 +48,10 @@ class DetailViewController: UITableViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "save" {
-            //            unContact = Contact(nom: nomTextField.text, prenom:prenomTextField.text, adresse: adresseTextField.text, mail : mailTextField.text, photo : UIImage())
+        if segue.identifier == "Search" {
+            println("Search")
+            //vc.address = "Stocker l'adresse comme il faut"
+            
         }
         
     }

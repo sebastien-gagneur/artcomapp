@@ -14,24 +14,12 @@ import MapKit
 class WhereViewController: UITableViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     
+    @IBOutlet var mapView: MKMapView!
+    
     @IBOutlet var dealerTextField: UITextField!
-    //    var id: Int?
-    //    var name : String?
-    //    var email : String?
-    //    var password : String?
-    //
-    //    @IBOutlet var idTextField: UITextField!
-    //
-    //    @IBOutlet var nameTextField: UITextField!
-    //
-    //    @IBOutlet var emailTextField: UITextField!
-    //
-    //    @IBOutlet var passwordTextField: UITextField!
     
-    
-    @IBOutlet var mapMapWiew: MKMapView!
-    @IBOutlet var mapMapView: MKMapView!
-    
+    var address : String?
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -41,9 +29,14 @@ class WhereViewController: UITableViewController, MKMapViewDelegate, CLLocationM
         //locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
         
+        //let mk : MKMapItem = MKMapItem()
+        //let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+        //mk.openInMapsWithLaunchOptions(launchOptions)
+        
         //let initialLocation = CLLocation(latitude: 21.282778, longitude: -157.829444)
         
-        let location = "36, rue Joseph Claussat, Chamalières, France"
+        let location = "42, rue Joseph Claussat, Chamalières, France"
+        dealerTextField.text = self.address
         var geocoder:CLGeocoder = CLGeocoder()
         geocoder.geocodeAddressString(location, completionHandler: {(placemarks, error) -> Void in
             
@@ -61,35 +54,21 @@ class WhereViewController: UITableViewController, MKMapViewDelegate, CLLocationM
                 pointAnnotation.coordinate = coordinates
                 pointAnnotation.title = "Etelka Spa"
                 
+                //let span = MKCoordinateSpanMake(0.05, 0.05)
+                let region = MKCoordinateRegion()
+                self.mapView?.setRegion(region, animated: true)
+                
+                
                 //self.mapMapWiew.autoresizingMask = UIViewAutoresizing()
-                self.mapMapView?.addAnnotation(pointAnnotation)
-                self.mapMapView?.centerCoordinate = coordinates
-                self.mapMapWiew?.selectAnnotation(pointAnnotation, animated: true)
+                self.mapView?.addAnnotation(pointAnnotation)
+                self.mapView?.centerCoordinate = coordinates
+                self.mapView?.selectAnnotation(pointAnnotation, animated: true)
+        
                 
                 println("Added annotation to map view")
             }
             
         })
-        
-        //        idTextField.text = id?.description
-        //        nameTextField.text = name
-        //        emailTextField.text = email
-        //        passwordTextField.text = password
-        
-        // Do any additional setup after loading the view, typically from a nib.
-    }
-    
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-        manager.requestWhenInUseAuthorization()
-        manager.requestAlwaysAuthorization()
-        manager.startUpdatingLocation()
-        
-    }
-    
-    func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        if (status == CLAuthorizationStatus.AuthorizedAlways || status == CLAuthorizationStatus.AuthorizedWhenInUse) {
-            self.mapMapWiew.showsUserLocation = true
-        }
     }
     
     override func didReceiveMemoryWarning() {
