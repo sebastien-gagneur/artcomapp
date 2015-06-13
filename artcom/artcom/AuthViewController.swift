@@ -88,6 +88,8 @@ class AuthViewController : UIViewController, APIControllerProtocol, UITextFieldD
                 "Please verify your username or password !", preferredStyle: UIAlertControllerStyle.Alert)
             alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default,handler: nil))
             self.presentViewController(alertController, animated: true, completion: nil)
+            Keychain.set("name", value: "")
+            Keychain.set("pass",value: "")
         }
     }
     
