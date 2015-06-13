@@ -29,17 +29,59 @@ class SettingViewController: UITableViewController, APIControllerProtocol, UITex
     
     var unUser : User?
     var URL : String?
+    // point d'entrée dans les settings :
+    var SignIn : Bool = false
     
     var api: APIController = APIController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         nameTextField.text = Keychain.get("name")?.description
         passTextField.text = Keychain.get("pass")?.description
+        
+        //Si les champs sont différents de blanc, l'authentification est déjà faite, on ne peut plus modifier le nom de l'utilisateur
+        if (nameTextField.text != "" && passTextField != "")
+        {
+            nameTextField.enabled = false
+        }
+        
         self.api.delegate = self
+        
+        self.nameTextField.delegate = self
+        self.passTextField.delegate = self
+        self.numberTextField.delegate = self
+        self.streetTextField.delegate = self
+        self.zipTextField.delegate = self
+        self.cityTextField.delegate = self
+        self.phoneTextField.delegate = self
+        self.webTextField.delegate = self
+        self.twitterTextField.delegate = self
+        self.facebookTextField.delegate = self
+        self.emailTextField.delegate = self
+        self.roleTextField.delegate = self
+        self.rateTextField.delegate = self
+        
+        // Valeur différente de blanc => donc l'authentification est déjà faite
+        if (nameTextField.text != "" && passTextField != "")
+        {
         URL = "http://techspeech.alwaysdata.net/apiartcom/artcom/users/root/QMBD35BEI/" + nameTextField.text + "/" + passTextField.text + "/user/" + nameTextField.text
         self.api.GetAPIResultsAsync(URL)
         println(URL)
+        }
+        // sinon je dois créer un compte
+        else
+        {
+            let alertController = UIAlertController(title: "You must create an account", message:
+                "Fill all fields and press Done", preferredStyle: UIAlertControllerStyle.Alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default,handler: nil))
+            self.presentViewController(alertController, animated: true, completion: nil)
+            SignIn = true
+            
+            // je cré un objet nécessaire au nouveau utilisateur
+            
+            unUser = User(id :"",name : "",pass : "",number : 0,street : "",zip : 0,city : "",phone : "", website : "", twitter : "", facebook : "", email : "", timestamp : 0, role : "", rate : 0)
+        }
         // Do any additional setup after loading the view, typically from a nib.
     }
     
@@ -54,30 +96,86 @@ class SettingViewController: UITableViewController, APIControllerProtocol, UITex
     }
     
     @IBAction func clickDoneButton(sender: UIBarButtonItem) {
-        unUser!.setNumber(numberTextField.text.toInt()!)
+        // mise à jour du compte si déjà authentifié, sinon création du compte
+        println("DONE")
+
+        unUser!.setName(nameTextField.text)
+        unUser!.setPass(passTextField.text)
+        
+        if ( numberTextField.text == "")
+        {
+                unUser!.setNumber(0)
+        }
+        else
+        {
+            unUser!.setNumber(numberTextField.text.toInt()!)
+        }
+
+        
         unUser!.setStreet(streetTextField.text)
-        unUser!.setZip(zipTextField.text.toInt()!)
+        if ( zipTextField.text == "")
+        {
+            unUser!.setZip(0)
+        }
+        else
+        {
+            unUser!.setZip(zipTextField.text.toInt()!)
+        }
         unUser!.setCity(cityTextField.text)
         unUser!.setPhone(phoneTextField.text)
         unUser!.setWebsite(webTextField.text)
         unUser!.setTwitter(twitterTextField.text)
         unUser!.setFacebook(facebookTextField.text)
         unUser!.setEmail(emailTextField.text)
-        unUser!.setRole(roleTextField.text)
-        unUser!.setRate(rateTextField.text.toInt()!)
+        unUser!.setRole("public")
         
-        URL = "http://techspeech.alwaysdata.net/apiartcom/artcom/users/admin/9XTN#ztXmFnWH&/seb/seb/updateusers/"
-        URL = URL! + unUser!.getId() + "?name=seb&password=seb&number=" + String(unUser!.getNumber())
-        URL = URL! + "&street=" + unUser!.getStreet()
-        URL = URL! + "&zip=" + String(unUser!.getZip()) + "&city=" + unUser!.getCity() + "&phone=" + unUser!.getPhone()
-        URL = URL! + "&website=" + unUser!.getWebsite() + "&twitter=" + unUser!.getTwitter() + "&facebook=" + unUser!.getFacebook() + "&email=" + unUser!.getEmail() + "&role=" + unUser!.getRole() + "&rate=" + String(unUser!.getRate())
-        println(URL)
-        self.api.PutAPIResultsAsync(URL)
+        if ( rateTextField.text == "")
+        {
+            unUser!.setRate(0)
+        }
+        else
+        {
+            unUser!.setRate(rateTextField.text.toInt()!)
+        }
+        
+        
+        // MISE A JOUR
+        if (SignIn == false)
+        {
+            // mise à jour normalement le compte du user devrait être utilisé ici !!!!
+            
+            URL = "http://techspeech.alwaysdata.net/apiartcom/artcom/users/admin/9XTN#ztXmFnWH&/seb/seb/updateusers/"
+            URL = URL! + unUser!.getId() + "?name=seb&password=seb&number=" + String(unUser!.getNumber())
+            URL = URL! + "&street=" + unUser!.getStreet()
+            URL = URL! + "&zip=" + String(unUser!.getZip()) + "&city=" + unUser!.getCity() + "&phone=" + unUser!.getPhone()
+            URL = URL! + "&website=" + unUser!.getWebsite() + "&twitter=" + unUser!.getTwitter() + "&facebook=" + unUser!.getFacebook() + "&email=" + unUser!.getEmail() + "&role=" + unUser!.getRole() + "&rate=" + String(unUser!.getRate())
+            println(URL)
+            self.api.PutAPIResultsAsync(URL)
+        }
+        // CREATION
+        else
+        {
+            //il doit y avoir au moins un compte admin pour créer des comptes
+            
+            URL = "http://techspeech.alwaysdata.net/apiartcom/artcom/users/admin/9XTN#ztXmFnWH&/seb/seb/insertuser"
+            URL = URL! + "?name=" + unUser!.getName() + "&password=" + unUser!.getPass() + "&number=" + String(unUser!.getNumber())
+            URL = URL! + "&street=" + unUser!.getStreet()
+            URL = URL! + "&zip=" + String(unUser!.getZip()) + "&city=" + unUser!.getCity() + "&phone=" + unUser!.getPhone()
+            URL = URL! + "&website=" + unUser!.getWebsite() + "&twitter=" + unUser!.getTwitter() + "&facebook=" + unUser!.getFacebook() + "&email=" + unUser!.getEmail() + "&role=" + unUser!.getRole() + "&rate=" + String(unUser!.getRate())
+            println(URL)
+            self.api.PostAPIResultsAsync(URL)
+            SignIn = false
+            // appel de la fenêtre des articles
+            //performSegueWithIdentifier("GoToArticles", sender: self)
+        }
 
     }
     
+    
+    
     func JSONAPIResults(results: JSON) {
         
+            println(results)
             let _id = results["_id"]
             let id = _id["$id"]
             let name = results["name"]
@@ -92,9 +190,27 @@ class SettingViewController: UITableViewController, APIControllerProtocol, UITex
             let facebook = results["facebook"]
             let email = results["email"]
             let timestamp = results["timestamp"]
+            let sec = timestamp["sec"]
+            let inc = timestamp["inc"]
             let role = results["role"]
             let rate = results["rate"]
         
+            //unUser!.setId(id.string!)
+            //unUser!.setName(name.string!)
+            //unUser!.setPass(pass.string!)
+            //unUser!.setNumber(number.int!)
+            //unUser!.setStreet(street.string!)
+            //unUser!.setZip(zip.int!)
+            //unUser!.setPhone(phone.string!)
+            //unUser!.setWebsite(website.string!)
+            //unUser!.setTwitter(twitter.string!)
+            //unUser!.setFacebook(facebook.string!)
+            //unUser!.setEmail(email.string!)
+            //unUser!.setTimestamp(timestamp.int!)
+            //unUser!.setRole(role.string!)
+            //unUser!.setRate(rate.int!)
+
+            // création de l'objet associé au compte authentifié
             unUser = User(id :id.string,name : name.string,pass : pass.string,number : number.int,street : street.string,zip : zip.int,city : city.string,phone : phone.string, website : website.string, twitter : twitter.string, facebook : facebook.string, email : email.string, timestamp : timestamp.int, role : role.string, rate : rate.int)
         
             numberTextField.text = (unUser!.getNumber()).description

@@ -20,10 +20,9 @@ class APIController : NSObject {
     
     var delegate:APIControllerProtocol?
     
+    // CALL GET API
     func GetAPIResultsAsync(URIString:String?) {
-        println("API")
-        
-        
+        println("GET API")
         Alamofire.request(.GET, URIString!).responseJSON() {
             (_, _, data, _) in
             let json = JSON(data!)
@@ -32,13 +31,9 @@ class APIController : NSObject {
             }
     }
     
+    //CALL PUT API
     func PutAPIResultsAsync(URIString:String?) {
-    println("API")
-        var manager = Manager.sharedInstance
-        // Specifying the Headers we need
-        manager.session.configuration.HTTPAdditionalHeaders = [
-            "Content-Type": "application/x-www-form-urlencoded",
-            "Accept" : "application/json"]
+        println("PUT API")
         var urlString : String?
         urlString = URIString
         urlString = urlString!.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
@@ -49,4 +44,21 @@ class APIController : NSObject {
                 println("ERROR : \(error)")
             }
     }
+    
+    //CALL POST API
+    func PostAPIResultsAsync(URIString:String?) {
+        println("POST API")
+        var urlString : String?
+        urlString = URIString
+        urlString = urlString!.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
+        Alamofire.request(.POST,urlString!, parameters: nil, encoding : .URL ).responseString { (request, response, data, error) in
+            println("REQUEST : \(request)")
+            println("RESPONSE : \(response)")
+            println("DATA \(data)") // permet d'afficher le message d'erreur en remplaçant .response... par .responseString
+            println("ERROR : \(error)")
+        }
+    }
+    
+    
+    
 }

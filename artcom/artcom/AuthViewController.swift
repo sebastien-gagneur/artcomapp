@@ -49,6 +49,9 @@ class AuthViewController : UIViewController, APIControllerProtocol, UITextFieldD
     @IBAction func clickSignButton(sender: UIButton) {
         // DAns le cas ou le compte public n'existe pas
         // on va dire que les comptes PRO seront créés à l'avance pour les souscriptions
+        Keychain.set("name", value: "")
+        Keychain.set("pass",value: "")
+        performSegueWithIdentifier("SignIn", sender: self)
     }
     
     override func viewDidLoad() {
