@@ -8,7 +8,6 @@
 
 
 import UIKit
-//import Alamofire
 import SwiftyJSON
 
 class SettingViewController: UITableViewController, APIControllerProtocol, UITextFieldDelegate {
@@ -39,7 +38,6 @@ class SettingViewController: UITableViewController, APIControllerProtocol, UITex
         // création d'un compte user à blanc à remplir par la suite
         unUser = User(id :"",name : "",pass : "",number : 0,street : "",zip : 0,city : "",phone : "", website : "", twitter : "", facebook : "", email : "", timestamp : 0, role : "", rate : 0)
         
-        
         nameTextField.text = Keychain.get("name")?.description
         println("name : \(nameTextField.text)")
         passTextField.text = Keychain.get("pass")?.description
@@ -51,9 +49,7 @@ class SettingViewController: UITableViewController, APIControllerProtocol, UITex
             nameTextField.enabled = false
         }
         
-        
         self.api.delegate = self
-        
         self.nameTextField.delegate = self
         self.passTextField.delegate = self
         self.numberTextField.delegate = self
@@ -84,10 +80,6 @@ class SettingViewController: UITableViewController, APIControllerProtocol, UITex
             alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default,handler: nil))
             SignIn = true // on arrive par le sign in
             self.presentViewController(alertController, animated: true, completion: nil)
-            
-            // je cré un objet nécessaire au nouveau utilisateur
-            
-            //unUser = User(id :"",name : "",pass : "",number : 0,street : "",zip : 0,city : "",phone : "", website : "", twitter : "", facebook : "", email : "", timestamp : 0, role : "", rate : 0)
         }
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -107,7 +99,6 @@ class SettingViewController: UITableViewController, APIControllerProtocol, UITex
             {
                 unUser!.setNumber(numberTextField.text.toInt()!)
             }
-            
             
             unUser!.setStreet(streetTextField.text)
             if ( zipTextField.text == "")
@@ -134,7 +125,6 @@ class SettingViewController: UITableViewController, APIControllerProtocol, UITex
             {
                 unUser!.setRate(rateTextField.text.toInt()!)
             }
-            
             
             // MISE A JOUR d'un compte existant
             if (SignIn == false)
@@ -222,9 +212,6 @@ class SettingViewController: UITableViewController, APIControllerProtocol, UITex
             unUser!.setRole(role.string!)
             unUser!.setRate(rate.int!)
 
-            // création de l'objet associé au compte authentifié
-            //unUser = User(id :id.string,name : name.string,pass : pass.string,number : number.int,street : street.string,zip : zip.int,city : city.string,phone : phone.string, website : website.string, twitter : twitter.string, facebook : facebook.string, email : email.string, timestamp : timestamp.int, role : role.string, rate : rate.int)
-        
             numberTextField.text = (unUser!.getNumber()).description
             streetTextField.text = unUser!.getStreet()
             zipTextField.text = (unUser!.getZip()).description

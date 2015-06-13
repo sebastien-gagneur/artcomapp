@@ -9,7 +9,6 @@
 import Foundation
 
 import UIKit
-import Alamofire
 import SwiftyJSON
 
 class AuthViewController : UIViewController, APIControllerProtocol, UITextFieldDelegate {
