@@ -19,6 +19,9 @@ class ViewController : UITableViewController, APIControllerProtocol {
     
      override func viewDidLoad() {
         super.viewDidLoad()
+        println(Keychain.get("name")?.description)
+        println(Keychain.get("pass")?.description)
+        println(Keychain.get("role")?.description)
         actInd = UIActivityIndicatorView()
         self.api.delegate = self
         self.api.GetAPIResultsAsync("http://techspeech.alwaysdata.net/apiartcom/artcom/articles/root/QMBD35BEI/seb/seb")
@@ -88,10 +91,32 @@ class ViewController : UITableViewController, APIControllerProtocol {
                 vc.rate = obj?.getRate()
                 vc.category = obj?.getCategory()
             }
+            
+            if segue.identifier == "NewArticle" {
+                println("new")
+            }
     }
     
-                
-                
+    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
+        var answer : Bool?
+        if (identifier == "NewArticle") {
+            println("should")
+            let v = Keychain.get("role")?.description
+            if Keychain.get("role")?.description == "admin" || Keychain.get("role")?.description == "pro" {
+                println("oui : \(v)")
+                answer = true
+            }
+            else
+            {
+                println("non : \(v)")
+                answer = false
+            }
+        }
+        if (identifier == "Settings") {
+            answer = true
+        }
+        return answer!
+    }
     
     
     func JSONAPIResults(results: JSON) {

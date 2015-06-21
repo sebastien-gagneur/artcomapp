@@ -115,7 +115,17 @@ class SettingViewController: UITableViewController, APIControllerProtocol, UITex
             unUser!.setTwitter(twitterTextField.text)
             unUser!.setFacebook(facebookTextField.text)
             unUser!.setEmail(emailTextField.text)
-            unUser!.setRole("public")
+            // Si création d'un nouveau compte avec sign in
+            if (SignIn == true)
+            {
+                unUser!.setRole("public")
+            }
+            // pour un compte déjà existant avec log in on reprend le rôle déjà renseigné
+            else
+            {
+                unUser!.setRole(roleTextField.text)
+            }
+            
             
             if ( rateTextField.text == "")
             {
@@ -156,6 +166,7 @@ class SettingViewController: UITableViewController, APIControllerProtocol, UITex
             }
             Keychain.set("name", value: unUser!.getName())
             Keychain.set("pass",value: unUser!.getPass())
+            Keychain.set("role",value: unUser!.getRole())
 
         }
     }

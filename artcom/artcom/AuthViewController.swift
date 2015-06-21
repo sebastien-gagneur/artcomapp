@@ -78,6 +78,7 @@ class AuthViewController : UIViewController, APIControllerProtocol, UITextFieldD
         if (Auth == 1 ) {
             Keychain.set("name", value: self.name!)
             Keychain.set("pass",value: self.pass!)
+            Keychain.set("role",value: "pas bon")
             performSegueWithIdentifier("Verify", sender: self)
             // le segue est enfin exécuté
         }
@@ -89,6 +90,7 @@ class AuthViewController : UIViewController, APIControllerProtocol, UITextFieldD
             self.presentViewController(alertController, animated: true, completion: nil)
             Keychain.set("name", value: "")
             Keychain.set("pass",value: "")
+            Keychain.set("role",value: "")
         }
     }
     
