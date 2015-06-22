@@ -33,7 +33,7 @@ class AuthViewController : UIViewController, APIControllerProtocol, UITextFieldD
         pass = passTextField.text
         self.api.delegate = self
         var URL : String?
-        URL = "http://techspeech.alwaysdata.net/apiartcom/artcom/articles/root/QMBD35BEI/" + name!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + "/" + pass!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + "/auth"
+        URL = "http://techspeech.alwaysdata.net/apiartcom/artcom/users/root/QMBD35BEI/" + name!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + "/" + pass!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) + "/auth"
         println("URL \(URL) ")
         self.api.GetAPIResultsAsync(URL)
         shouldPerformSegueWithIdentifier("Verify", sender: self) // appel la méthode suivante qui renvoie faux
@@ -50,6 +50,17 @@ class AuthViewController : UIViewController, APIControllerProtocol, UITextFieldD
         // on va dire que les comptes PRO seront créés à l'avance pour les souscriptions
         Keychain.set("name", value: "")
         Keychain.set("pass",value: "")
+        Keychain.set("company",value: "")
+        Keychain.set("role",value: "")
+        Keychain.set("number",value: "")
+        Keychain.set("street",value: "")
+        Keychain.set("zip",value: "")
+        Keychain.set("city",value: "")
+        Keychain.set("phone",value: "")
+        Keychain.set("website",value: "")
+        Keychain.set("twitter",value: "")
+        Keychain.set("facebook",value: "")
+        Keychain.set("email",value: "")
         performSegueWithIdentifier("SignIn", sender: self)
     }
     
@@ -74,11 +85,24 @@ class AuthViewController : UIViewController, APIControllerProtocol, UITextFieldD
 
     func JSONAPIResults(results: JSON) {
         Auth = results["answerAuth"].intValue
+        let role = results["role"].string as String?
+        println("role auth \(role)")
         println("Auth \(Auth)")
         if (Auth == 1 ) {
             Keychain.set("name", value: self.name!)
             Keychain.set("pass",value: self.pass!)
-            Keychain.set("role",value: "pas bon")
+            Keychain.set("company",value: results["company"].string!)
+            Keychain.set("role",value: results["role"].string!)
+            Keychain.set("number",value: (results["number"].int!).description)
+            Keychain.set("street",value: results["street"].string!)
+            Keychain.set("zip",value: (results["zip"].int!).description)
+            Keychain.set("city",value: results["city"].string!)
+            Keychain.set("phone",value: results["phone"].string!)
+            Keychain.set("website",value: results["website"].string!)
+            Keychain.set("twitter",value: results["twitter"].string!)
+            Keychain.set("facebook",value: results["facebook"].string!)
+            Keychain.set("email",value: results["email"].string!)
+            
             performSegueWithIdentifier("Verify", sender: self)
             // le segue est enfin exécuté
         }
@@ -90,7 +114,17 @@ class AuthViewController : UIViewController, APIControllerProtocol, UITextFieldD
             self.presentViewController(alertController, animated: true, completion: nil)
             Keychain.set("name", value: "")
             Keychain.set("pass",value: "")
+            Keychain.set("company", value: "")
             Keychain.set("role",value: "")
+            Keychain.set("number",value: "")
+            Keychain.set("street",value: "")
+            Keychain.set("zip",value: "")
+            Keychain.set("city",value: "")
+            Keychain.set("phone",value: "")
+            Keychain.set("website",value: "")
+            Keychain.set("twitter",value: "")
+            Keychain.set("facebook",value: "")
+            Keychain.set("email",value: "")
         }
     }
     

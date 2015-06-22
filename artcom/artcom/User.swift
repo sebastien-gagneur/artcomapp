@@ -13,6 +13,7 @@ class User {
     var id : String?
     var name : String?
     var pass : String?
+    var company : String?
     var number : Int?
     var street : String?
     var zip :  Int?
@@ -26,10 +27,11 @@ class User {
     var role : String?
     var rate : Int?
     
-    init(id : String!, name : String!, pass : String!, number : Int!, street : String!, zip : Int!, city : String!, phone : String!, website : String!, twitter : String!, facebook : String!, email : String!, timestamp : Int!, role : String!, rate : Int?) {
+    init(id : String!, name : String!, pass : String!, company : String!, number : Int!, street : String!, zip : Int!, city : String!, phone : String!, website : String!, twitter : String!, facebook : String!, email : String!, timestamp : Int!, role : String!, rate : Int?) {
         self.id = id
         self.name = name
         self.pass = pass
+        self.company = company
         self.number = number
         self.street = street
         self.zip = zip
@@ -54,6 +56,10 @@ class User {
     
     func setPass(pass : String) {
         self.pass = pass
+    }
+    
+    func setCompany(company : String) {
+        self.company = company
     }
     
     func setNumber(number : Int) {
@@ -116,6 +122,10 @@ class User {
     
     func getPass() -> String {
         return self.pass!
+    }
+    
+    func getCompany() -> String {
+        return self.company!
     }
     
     func getNumber() -> Int {

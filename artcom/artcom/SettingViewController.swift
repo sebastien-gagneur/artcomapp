@@ -14,6 +14,7 @@ class SettingViewController: UITableViewController, APIControllerProtocol, UITex
     
     @IBOutlet var nameTextField: UITextField!
     @IBOutlet var passTextField: UITextField!
+    @IBOutlet var companyTextField: UITextField!
     @IBOutlet var numberTextField: UITextField!
     @IBOutlet var streetTextField: UITextField!
     @IBOutlet var zipTextField: UITextField!
@@ -36,7 +37,7 @@ class SettingViewController: UITableViewController, APIControllerProtocol, UITex
     override func viewDidLoad() {
         super.viewDidLoad()
         // création d'un compte user à blanc à remplir par la suite
-        unUser = User(id :"",name : "",pass : "",number : 0,street : "",zip : 0,city : "",phone : "", website : "", twitter : "", facebook : "", email : "", timestamp : 0, role : "", rate : 0)
+        unUser = User(id :"",name : "",pass : "",company : "", number : 0,street : "",zip : 0,city : "",phone : "", website : "", twitter : "", facebook : "", email : "", timestamp : 0, role : "", rate : 0)
         
         nameTextField.text = Keychain.get("name")?.description
         println("name : \(nameTextField.text)")
@@ -52,6 +53,7 @@ class SettingViewController: UITableViewController, APIControllerProtocol, UITex
         self.api.delegate = self
         self.nameTextField.delegate = self
         self.passTextField.delegate = self
+        self.companyTextField.delegate = self
         self.numberTextField.delegate = self
         self.streetTextField.delegate = self
         self.zipTextField.delegate = self
@@ -90,6 +92,7 @@ class SettingViewController: UITableViewController, APIControllerProtocol, UITex
         {
             unUser!.setName(nameTextField.text)
             unUser!.setPass(passTextField.text)
+            unUser!.setCompany(companyTextField.text)
             
             if ( numberTextField.text == "")
             {
@@ -140,9 +143,9 @@ class SettingViewController: UITableViewController, APIControllerProtocol, UITex
             if (SignIn == false)
             {
                 // mise à jour normalement le compte du user devrait être utilisé ici !!!!
-                
-                URL = "http://techspeech.alwaysdata.net/apiartcom/artcom/users/admin/9XTN#ztXmFnWH&/seb/seb/updateusers/"
-                URL = URL! + unUser!.getId() + "?name=" + unUser!.getName() + "&password=" + unUser!.getPass() + "&number=" + String(unUser!.getNumber())
+                println(unUser!.getId())
+                URL = "http://techspeech.alwaysdata.net/apiartcom/artcom/users/admin/9XTN#ztXmFnWH&/" + unUser!.getName() + "/" + unUser!.getPass() + "/updateusers/"
+                URL = URL! + unUser!.getId() + "?name=" + unUser!.getName() + "&password=" + unUser!.getPass() + "&company=" + unUser!.getCompany() + "&number=" + String(unUser!.getNumber())
                 URL = URL! + "&street=" + unUser!.getStreet()
                 URL = URL! + "&zip=" + String(unUser!.getZip()) + "&city=" + unUser!.getCity() + "&phone=" + unUser!.getPhone()
                 URL = URL! + "&website=" + unUser!.getWebsite() + "&twitter=" + unUser!.getTwitter() + "&facebook=" + unUser!.getFacebook() + "&email=" + unUser!.getEmail() + "&role=" + unUser!.getRole() + "&rate=" + String(unUser!.getRate())
@@ -152,10 +155,11 @@ class SettingViewController: UITableViewController, APIControllerProtocol, UITex
             // CREATION d'un nouveau compte
             else
             {
-                //il doit y avoir au moins un compte admin pour créer des comptes
+                //il doit y avoir au moins deux comptes admin pour créer des comptes
+                // admin de base et seb/seb role = admin
                 
                 URL = "http://techspeech.alwaysdata.net/apiartcom/artcom/users/admin/9XTN#ztXmFnWH&/seb/seb/insertuser"
-                URL = URL! + "?name=" + unUser!.getName() + "&password=" + unUser!.getPass() + "&number=" + String(unUser!.getNumber())
+                URL = URL! + "?name=" + unUser!.getName() + "&password=" + unUser!.getPass() + "&company=" + unUser!.getCompany() + "&number=" + String(unUser!.getNumber())
                 URL = URL! + "&street=" + unUser!.getStreet()
                 URL = URL! + "&zip=" + String(unUser!.getZip()) + "&city=" + unUser!.getCity() + "&phone=" + unUser!.getPhone()
                 URL = URL! + "&website=" + unUser!.getWebsite() + "&twitter=" + unUser!.getTwitter() + "&facebook=" + unUser!.getFacebook() + "&email=" + unUser!.getEmail() + "&role=" + unUser!.getRole() + "&rate=" + String(unUser!.getRate())
@@ -166,7 +170,18 @@ class SettingViewController: UITableViewController, APIControllerProtocol, UITex
             }
             Keychain.set("name", value: unUser!.getName())
             Keychain.set("pass",value: unUser!.getPass())
+            Keychain.set("company",value: unUser!.getCompany())
             Keychain.set("role",value: unUser!.getRole())
+            
+            Keychain.set("number",value: unUser!.getNumber().description)
+            Keychain.set("street",value: unUser!.getStreet())
+            Keychain.set("zip",value: unUser!.getZip().description)
+            Keychain.set("city",value: unUser!.getCity())
+            Keychain.set("phone",value: unUser!.getPhone())
+            Keychain.set("website",value: unUser!.getWebsite())
+            Keychain.set("twitter",value: unUser!.getTwitter())
+            Keychain.set("facebook",value: unUser!.getFacebook())
+            Keychain.set("email",value: unUser!.getEmail())
 
         }
     }
@@ -192,6 +207,7 @@ class SettingViewController: UITableViewController, APIControllerProtocol, UITex
             let id = _id["$id"]
             let name = results["name"]
             let pass = results["pass"]
+            let company = results["company"]
             let number = results["number"]
             let street = results["street"]
             let zip = results["zip"]
@@ -210,6 +226,7 @@ class SettingViewController: UITableViewController, APIControllerProtocol, UITex
             unUser!.setId(id.string!)
             unUser!.setName(name.string!)
             unUser!.setPass(pass.string!)
+            unUser!.setCompany(company.string!)
             unUser!.setNumber(number.int!)
             unUser!.setStreet(street.string!)
             unUser!.setZip(zip.int!)
@@ -223,6 +240,7 @@ class SettingViewController: UITableViewController, APIControllerProtocol, UITex
             unUser!.setRole(role.string!)
             unUser!.setRate(rate.int!)
 
+            companyTextField.text = (unUser!.getCompany())
             numberTextField.text = (unUser!.getNumber()).description
             streetTextField.text = unUser!.getStreet()
             zipTextField.text = (unUser!.getZip()).description

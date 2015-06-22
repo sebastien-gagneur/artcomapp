@@ -14,15 +14,41 @@ import MapKit
 class WhereViewController: UITableViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     
+    @IBOutlet var companyTextField: UITextField!
+    
+    @IBOutlet var addressTextField: UITextField!
+    
     @IBOutlet var mapView: MKMapView!
     
-    @IBOutlet var dealerTextField: UITextField!
+    @IBOutlet var websiteTextField: UITextField!
+    
+    @IBOutlet var twitterTextField: UITextField!
+    
+    @IBOutlet var facebookTextField: UITextField!
+    
+    @IBOutlet var emailTextField: UITextField!
+    
+    @IBOutlet var phoneTextField: UITextField!
+    
     
     var address : String?
+    var name : String?
+    var pass : String?
+    var role : String?
+    var company : String?
+    var number : String?
+    var street : String?
+    var zip : String?
+    var city : String?
+    var phone : String?
+    var website : String?
+    var twitter : String?
+    var facebook : String?
+    var email : String?
    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        println("add \(address) \(company)")
         var locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
@@ -35,8 +61,15 @@ class WhereViewController: UITableViewController, MKMapViewDelegate, CLLocationM
         
         //let initialLocation = CLLocation(latitude: 21.282778, longitude: -157.829444)
         
-        let location = "42, rue Joseph Claussat, Chamalières, France"
-        dealerTextField.text = self.address
+        let location = self.address
+        companyTextField.text = self.company
+        addressTextField.text = self.address
+        websiteTextField.text = self.website
+        twitterTextField.text = self.twitter
+        facebookTextField.text = self.facebook
+        emailTextField.text = self.email
+        phoneTextField.text = self.phone
+        
         var geocoder:CLGeocoder = CLGeocoder()
         geocoder.geocodeAddressString(location, completionHandler: {(placemarks, error) -> Void in
             
@@ -52,7 +85,7 @@ class WhereViewController: UITableViewController, MKMapViewDelegate, CLLocationM
                 
                 var pointAnnotation:MKPointAnnotation = MKPointAnnotation()
                 pointAnnotation.coordinate = coordinates
-                pointAnnotation.title = "Etelka Spa"
+                pointAnnotation.title = self.company
                 
                 //let span = MKCoordinateSpanMake(0.05, 0.05)
                 let region = MKCoordinateRegion()

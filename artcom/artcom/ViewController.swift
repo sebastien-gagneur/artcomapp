@@ -90,6 +90,19 @@ class ViewController : UITableViewController, APIControllerProtocol {
                 vc.text = obj?.getText()
                 vc.rate = obj?.getRate()
                 vc.category = obj?.getCategory()
+                vc.name = Keychain.get("name")?.description
+                vc.pass = Keychain.get("pass")?.description
+                vc.company = Keychain.get("company")?.description
+                vc.role = Keychain.get("role")?.description
+                vc.number = Keychain.get("number")?.description
+                vc.street = Keychain.get("street")?.description
+                vc.zip = Keychain.get("zip")?.description
+                vc.city = Keychain.get("city")?.description
+                vc.phone = Keychain.get("phone")?.description
+                vc.website = Keychain.get("website")?.description
+                vc.twitter = Keychain.get("twitter")?.description
+                vc.facebook = Keychain.get("facebook")?.description
+                vc.email = Keychain.get("email")?.description
             }
             
             if segue.identifier == "NewArticle" {
@@ -109,6 +122,10 @@ class ViewController : UITableViewController, APIControllerProtocol {
             else
             {
                 println("non : \(v)")
+                let alertController = UIAlertController(title: "Something goes wrong !", message:
+                    "Only admin or pro roles can create articles. Please subscribe a premium account at contact@techspeech.fr", preferredStyle: UIAlertControllerStyle.Alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default,handler: nil))
+                self.presentViewController(alertController, animated: true, completion: nil)
                 answer = false
             }
         }
@@ -130,8 +147,21 @@ class ViewController : UITableViewController, APIControllerProtocol {
             let category = results["articles"][i]["category"]
             let text = results["articles"][i]["text"]
             let rate = results["articles"][i]["rate"]
+            // complément
+            let company = results["articles"][i]["company"]
+            let number = results["articles"][i]["number"]
+            let street = results["articles"][i]["street"]
+            let zip = results["articles"][i]["zip"]
+            let city = results["articles"][i]["city"]
+            let phone = results["articles"][i]["phone"]
+            let website = results["articles"][i]["website"]
+            let twitter = results["articles"][i]["twitter"]
+            let facebook = results["articles"][i]["facebook"]
+            let email = results["articles"][i]["email"]
             
-            self.unArticle = Article(id :id.string,title : title.string,subtitle : subtitle.string,category : category.int,text : text.string,image : UIImage(),rate : rate.int)
+            //self.unArticle = Article(id :id.string,title : title.string,subtitle : subtitle.string,category : category.int,text : text.string,image : UIImage(),rate : rate.int)
+            self.unArticle = Article(id: id.string, title: title.string, subtitle: subtitle.string, category: category.int, text: text.string, image: UIImage(), rate: rate.int, company : company.string, number: number.int, street: street.string, zip: zip.int, city: city.string, phone: phone.string, website: website.string, twitter: twitter.string, facebook: facebook.string, email: email.string)
+            
             self.tableArticles.insert(self.unArticle!,atIndex: i)
         }
 //        println("oioioioi :\(tableArticles.count)")
