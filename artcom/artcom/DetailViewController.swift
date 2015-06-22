@@ -69,9 +69,9 @@ class DetailViewController: UITableViewController {
         if segue.identifier == "search" {
             let vc = navigationController.topViewController as! WhereViewController
             println("Search")
-            vc.address = self.number! + ","
-            vc.address = vc.address! + self.street! + ","
-            vc.address = vc.address! + self.zip! + "," + self.city!
+            vc.address = self.number! + ", "
+            vc.address = vc.address! + self.street! + ", "
+            vc.address = vc.address! + self.zip! + ", " + self.city!
             vc.company = self.company!
             vc.website = self.website!
             vc.twitter = self.twitter!
