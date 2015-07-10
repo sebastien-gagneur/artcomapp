@@ -22,6 +22,7 @@ class ViewController : UITableViewController, APIControllerProtocol {
         println(Keychain.get("name")?.description)
         println(Keychain.get("pass")?.description)
         println(Keychain.get("role")?.description)
+        
         actInd = UIActivityIndicatorView()
         self.api.delegate = self
         self.api.GetAPIResultsAsync("http://techspeech.alwaysdata.net/apiartcom/artcom/articles/root/QMBD35BEI/seb/seb")
@@ -46,6 +47,7 @@ class ViewController : UITableViewController, APIControllerProtocol {
     //INSERT
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         actInd!.stopAnimating()
+        
         let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "cellArticles")
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         cell.textLabel?.text = tableArticles[indexPath.row]!.getTitle()
@@ -68,6 +70,8 @@ class ViewController : UITableViewController, APIControllerProtocol {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let indexPath = tableView.indexPathForSelectedRow();
         let currentCell = tableView.cellForRowAtIndexPath(indexPath!) as UITableViewCell!;
+        println("CanRate")
+        Keychain.set("CanRate",value : "1")
         self.performSegueWithIdentifier("Details", sender: currentCell)
         // lancement du segue Details dans le prepareForSegue
     }
@@ -85,11 +89,16 @@ class ViewController : UITableViewController, APIControllerProtocol {
                 //index value
                 //let indice = indexPath!.row
                 let obj = tableArticles[indexPath!.row]
+                vc.id = obj?.getId()
+                //vc.indice = indexPath!.row
                 vc.titre = obj?.getTitle()
                 vc.subtitle = obj?.getSubtitle()
                 vc.text = obj?.getText()
                 vc.rate = obj?.getRate()
                 vc.category = obj?.getCategory()
+                vc.nameAuthor = obj?.getNameAuthor()
+                vc.passAuthor = obj?.getPassAuthor()
+                
                 vc.name = Keychain.get("name")?.description
                 vc.pass = Keychain.get("pass")?.description
                 vc.company = Keychain.get("company")?.description
@@ -103,6 +112,7 @@ class ViewController : UITableViewController, APIControllerProtocol {
                 vc.twitter = Keychain.get("twitter")?.description
                 vc.facebook = Keychain.get("facebook")?.description
                 vc.email = Keychain.get("email")?.description
+                vc.CanRate = Keychain.get("CanRate")?.description
             }
             
             if segue.identifier == "NewArticle" {
@@ -141,7 +151,8 @@ class ViewController : UITableViewController, APIControllerProtocol {
         self.countArticles = results["articles"].array!.count
         //var unArticle : Article?
         for var i = 0 ; i < self.countArticles; i++ {
-            let id = results["articles"][i]["_id"]
+            let _id = results["articles"][i]["_id"]
+            let id = _id["$id"]
             let title = results["articles"][i]["title"]
             let subtitle = results["articles"][i]["subtitle"]
             let category = results["articles"][i]["category"]
@@ -158,16 +169,19 @@ class ViewController : UITableViewController, APIControllerProtocol {
             let twitter = results["articles"][i]["twitter"]
             let facebook = results["articles"][i]["facebook"]
             let email = results["articles"][i]["email"]
+            let nameA = results["articles"][i]["nameauthor"]
+            let passA = results["articles"][i]["passauthor"]
+            
             
             //self.unArticle = Article(id :id.string,title : title.string,subtitle : subtitle.string,category : category.int,text : text.string,image : UIImage(),rate : rate.int)
-            self.unArticle = Article(id: id.string, title: title.string, subtitle: subtitle.string, category: category.int, text: text.string, image: UIImage(), rate: rate.int, company : company.string, number: number.int, street: street.string, zip: zip.int, city: city.string, phone: phone.string, website: website.string, twitter: twitter.string, facebook: facebook.string, email: email.string)
+            self.unArticle = Article(id: id.string, title: title.string, subtitle: subtitle.string, category: category.int, text: text.string, image: UIImage(), rate: rate.int, company : company.string, number: number.int, street: street.string, zip: zip.int, city: city.string, phone: phone.string, website: website.string, twitter: twitter.string, facebook: facebook.string, email: email.string, nameAuthor : nameA.string, passAuthor : passA.string)
             
             self.tableArticles.insert(self.unArticle!,atIndex: i)
         }
 //        println("oioioioi :\(tableArticles.count)")
 //        for var i = 0 ; i < self.countArticles; i++ {
-//            
-//            println("table : \(self.tableArticles[i]?.getText())")
+//        
+//            println("table : \(self.tableArticles[i]?.getId())")
 //        }
         tableView.reloadData()
     }

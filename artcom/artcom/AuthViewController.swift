@@ -61,6 +61,7 @@ class AuthViewController : UIViewController, APIControllerProtocol, UITextFieldD
         Keychain.set("twitter",value: "")
         Keychain.set("facebook",value: "")
         Keychain.set("email",value: "")
+        Keychain.set("CanRate",value:"1")
         performSegueWithIdentifier("SignIn", sender: self)
     }
     
@@ -102,6 +103,7 @@ class AuthViewController : UIViewController, APIControllerProtocol, UITextFieldD
             Keychain.set("twitter",value: results["twitter"].string!)
             Keychain.set("facebook",value: results["facebook"].string!)
             Keychain.set("email",value: results["email"].string!)
+            Keychain.set("CanRate",value:"1")
             
             performSegueWithIdentifier("Verify", sender: self)
             // le segue est enfin exécuté
@@ -125,6 +127,7 @@ class AuthViewController : UIViewController, APIControllerProtocol, UITextFieldD
             Keychain.set("twitter",value: "")
             Keychain.set("facebook",value: "")
             Keychain.set("email",value: "")
+            Keychain.set("CanRate",value:"1")
         }
     }
     

@@ -29,8 +29,10 @@ class Article {
     var twitter : String?
     var facebook : String?
     var email : String?
+    var nameAuthor : String?
+    var passAuthor : String?
     
-    init(id : String!, title : String!, subtitle : String!, category : Int!, text : String!, image : UIImage!, rate : Int!, company : String!, number : Int!, street : String!, zip : Int!, city : String!, phone : String!, website : String!, twitter : String!, facebook : String!, email : String! ) {
+    init(id : String!, title : String!, subtitle : String!, category : Int!, text : String!, image : UIImage!, rate : Int!, company : String!, number : Int!, street : String!, zip : Int!, city : String!, phone : String!, website : String!, twitter : String!, facebook : String!, email : String!, nameAuthor : String! , passAuthor : String! ) {
         self.id = id
         self.title = title
         self.subtitle = subtitle
@@ -49,6 +51,8 @@ class Article {
         self.twitter = twitter
         self.facebook = facebook
         self.email = email
+        self.nameAuthor = nameAuthor
+        self.passAuthor = passAuthor
     }
     
     // SET
@@ -120,6 +124,16 @@ class Article {
     func setEmail(email : String) {
         self.email = email
     }
+    
+    func setNameAuthor(nameAuthor : String) {
+        self.nameAuthor = nameAuthor
+    }
+    
+    func setPassAuthor(passAuthor : String) {
+        self.passAuthor = passAuthor
+    }
+    
+    
 
     // GET
     
@@ -222,6 +236,14 @@ class Article {
     
     func getEmail() -> String {
         return self.email!
+    }
+    
+    func getNameAuthor() -> String {
+        return self.nameAuthor!
+    }
+    
+    func getPassAuthor() -> String {
+        return self.passAuthor!
     }
 
     

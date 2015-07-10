@@ -28,6 +28,8 @@ class NewViewController: UITableViewController, UITextFieldDelegate, UITextViewD
     var twitter : String?
     var facebook : String?
     var email : String?
+    var nameAuthor : String?
+    var passAuthor : String?
     
     @IBOutlet var titleTextField: UITextField!
     
@@ -49,7 +51,7 @@ class NewViewController: UITableViewController, UITextFieldDelegate, UITextViewD
         self.textTextView.delegate = self
         self.rateTextField.delegate = self
         
-        unArticle = Article(id: "", title: "", subtitle: "", category: 0, text: "", image: UIImage(), rate: 0, company : "", number: 0, street: "", zip: 0, city: "", phone: "", website: "", twitter: "", facebook: "", email: "")
+        unArticle = Article(id: "", title: "", subtitle: "", category: 0, text: "", image: UIImage(), rate: 0, company : "", number: 0, street: "", zip: 0, city: "", phone: "", website: "", twitter: "", facebook: "", email: "", nameAuthor:"", passAuthor : "")
         titleTextField.text = ""
         subtitleTextField.text = ""
         categoryTextField.text = "0"
@@ -69,6 +71,8 @@ class NewViewController: UITableViewController, UITextFieldDelegate, UITextViewD
         twitter = Keychain.get("twitter")?.description
         facebook = Keychain.get("facebook")?.description
         email = Keychain.get("email")?.description
+        nameAuthor = Keychain.get("name")?.description
+        passAuthor = Keychain.get("pass")?.description
         
         println("role \(role) \(number) \(street) \(zip) \(city) \(phone) \(website) \(twitter) \(facebook) \(email)")
         // Do any additional setup after loading the view, typically from a nib.
@@ -117,6 +121,8 @@ class NewViewController: UITableViewController, UITextFieldDelegate, UITextViewD
             unArticle!.setTwitter(self.twitter!)
             unArticle!.setFacebook(self.facebook!)
             unArticle!.setEmail(self.email!)
+            unArticle!.setNameAuthor(self.nameAuthor!)
+            unArticle!.setPassAuthor(self.passAuthor!)
             
             // CREATION d'un nouvel article
             //L'utilisateur doit être admin ou pro pour créer des articles, l'accès à ce module se fait justement avec un filtrage sur la vue d'avant (ViewController) avec le bouton +
@@ -132,6 +138,7 @@ class NewViewController: UITableViewController, UITextFieldDelegate, UITextViewD
             URL = URL! + "&city=" + unArticle!.getCity() + "&phone=" + unArticle!.getPhone()
             URL = URL! + "&website=" + unArticle!.getWebsite() + "&twitter=" + unArticle!.getTwitter()
             URL = URL! + "&facebook=" + unArticle!.getFacebook() + "&email=" + unArticle!.getEmail()
+            URL = URL! + "&nameauthor=" + unArticle!.getNameAuthor() + "&passauthor=" + unArticle!.getPassAuthor()
             println(URL)
             self.api.PostAPIResultsAsync(URL)
         }

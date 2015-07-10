@@ -70,6 +70,17 @@ class WhereViewController: UITableViewController, MKMapViewDelegate, CLLocationM
         emailTextField.text = self.email
         phoneTextField.text = self.phone
         
+        if  Keychain.get("role") == "public"
+        {
+            companyTextField.enabled = false
+            addressTextField.enabled = false
+            websiteTextField.enabled = false
+            twitterTextField.enabled = false
+            facebookTextField.enabled = false
+            emailTextField.enabled = false
+            phoneTextField.enabled = false
+        }
+        
         var geocoder:CLGeocoder = CLGeocoder()
         geocoder.geocodeAddressString(location, completionHandler: {(placemarks, error) -> Void in
             
