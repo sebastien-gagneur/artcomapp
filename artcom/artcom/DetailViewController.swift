@@ -25,9 +25,9 @@ class DetailViewController: UITableViewController {
     var pass : String?
     var company : String?
     var role : String?
-    var number : String?
+    var number : Int?
     var street : String?
-    var zip : String?
+    var zip : Int?
     var city : String?
     var phone : String?
     var website : String?
@@ -38,6 +38,7 @@ class DetailViewController: UITableViewController {
     
     var unArticle : Article?
     var URL : String?
+    var canUpDateWhereView : Bool?
     
     var api: APIController = APIController()
 
@@ -73,19 +74,20 @@ class DetailViewController: UITableViewController {
         super.viewDidLoad()
         unArticle = Article(id: "", title: "", subtitle: "", category: 0, text: "", image: UIImage(), rate: 0, company : "", number: 0, street: "", zip: 0, city: "", phone: "", website: "", twitter: "", facebook: "", email: "", nameAuthor : "", passAuthor : "")
         
-        name = Keychain.get("name")?.description
-        pass = Keychain.get("pass")?.description
-        role = Keychain.get("role")?.description
-        company = Keychain.get("company")?.description
-        number = Keychain.get("number")?.description
-        street = Keychain.get("street")?.description
-        zip = Keychain.get("zip")?.description
-        city = Keychain.get("city")?.description
-        phone = Keychain.get("phone")?.description
-        website = Keychain.get("website")?.description
-        twitter = Keychain.get("twitter")?.description
-        facebook = Keychain.get("facebook")?.description
-        email = Keychain.get("email")?.description
+//        name = Keychain.get("name")?.description
+//        pass = Keychain.get("pass")?.description
+//        role = Keychain.get("role")?.description
+//        company = Keychain.get("company")?.description
+//        number = Keychain.get("number")?.description
+//        street = Keychain.get("street")?.description
+//        zip = Keychain.get("zip")?.description
+//        city = Keychain.get("city")?.description
+//        phone = Keychain.get("phone")?.description
+//        website = Keychain.get("website")?.description
+//        twitter = Keychain.get("twitter")?.description
+//        facebook = Keychain.get("facebook")?.description
+//        email = Keychain.get("email")?.description
+        canUpDateWhereView = false
 
         
         
@@ -108,13 +110,20 @@ class DetailViewController: UITableViewController {
             textTextView.editable = false
         }
         
-        // Je vérifie que la company de l'utilisateur connecté, correspond à celle de l'utilisateur qui a créé l'annonce (on n'a pas pour l'instant le name et pass de celui qui à fait la création dans un article)
+        // Je vérifie que le name et pass de l'utilisateur connecté, correspond à celle de l'utilisateur qui a créé l'annonce
         if  Keychain.get("name") != nameAuthor && Keychain.get("pass") != passAuthor
         {
             titleTextField.enabled = false
             subtitleTextField.enabled = false
             categoryTextField.enabled = false
             textTextView.editable = false
+        }
+        else
+        {
+            if Keychain.get("role") == "pro" || Keychain.get("role") == "admin"
+            {
+                canUpDateWhereView = true
+            }
         }
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -132,16 +141,20 @@ class DetailViewController: UITableViewController {
         if segue.identifier == "search" {
             let vc = navigationController.topViewController as! WhereViewController
             println("Search")
-            vc.address = self.number! + ", "
+            vc.address = self.number!.description + ", "
             vc.address = vc.address! + self.street! + ", "
-            vc.address = vc.address! + self.zip! + ", " + self.city!
+            vc.address = vc.address! + self.zip!.description + ", " + self.city!
             vc.company = self.company!
             vc.website = self.website!
             vc.twitter = self.twitter!
             vc.facebook = self.facebook!
             vc.email = self.email!
             vc.phone = self.phone!
-            println("address : \(vc.address) company : \(vc.company)")
+            vc.canUpDate = canUpDateWhereView
+            vc.nameAuthor = nameAuthor
+            vc.passAuthor = passAuthor
+            
+            println("address : \(vc.address) company : \(vc.company) upDate : \(vc.canUpDate)")
             
         }
         
@@ -157,9 +170,9 @@ class DetailViewController: UITableViewController {
             unArticle?.setRate(rateTextField.text.toInt()!)
             // complément
             unArticle!.setCompany(self.company!)
-            unArticle!.setNumber(self.number!.toInt()!)
+            unArticle!.setNumber(self.number!)
             unArticle!.setStreet(self.street!)
-            unArticle!.setZip(self.zip!.toInt()!)
+            unArticle!.setZip(self.zip!)
             unArticle!.setCity(self.city!)
             unArticle!.setPhone(self.phone!)
             unArticle!.setWebsite(self.website!)

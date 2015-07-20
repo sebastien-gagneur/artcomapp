@@ -101,17 +101,17 @@ class ViewController : UITableViewController, APIControllerProtocol {
                 
                 vc.name = Keychain.get("name")?.description
                 vc.pass = Keychain.get("pass")?.description
-                vc.company = Keychain.get("company")?.description
+                vc.company = obj?.getCompany() //Keychain.get("company")?.description
                 vc.role = Keychain.get("role")?.description
-                vc.number = Keychain.get("number")?.description
-                vc.street = Keychain.get("street")?.description
-                vc.zip = Keychain.get("zip")?.description
-                vc.city = Keychain.get("city")?.description
-                vc.phone = Keychain.get("phone")?.description
-                vc.website = Keychain.get("website")?.description
-                vc.twitter = Keychain.get("twitter")?.description
-                vc.facebook = Keychain.get("facebook")?.description
-                vc.email = Keychain.get("email")?.description
+                vc.number = obj?.getNumber() //  Keychain.get("number")?.description
+                vc.street = obj?.getStreet() //Keychain.get("street")?.description
+                vc.zip = obj?.getZip() //Keychain.get("zip")?.description
+                vc.city = obj?.getCity() //Keychain.get("city")?.description
+                vc.phone = obj?.getPhone() //Keychain.get("phone")?.description
+                vc.website = obj?.getWebsite() //Keychain.get("website")?.description
+                vc.twitter = obj?.getTwitter() //Keychain.get("twitter")?.description
+                vc.facebook = obj?.getFacebook() ///Keychain.get("facebook")?.description
+                vc.email = obj?.getEmail() //Keychain.get("email")?.description
                 vc.CanRate = Keychain.get("CanRate")?.description
             }
             

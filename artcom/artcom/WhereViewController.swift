@@ -45,6 +45,9 @@ class WhereViewController: UITableViewController, MKMapViewDelegate, CLLocationM
     var twitter : String?
     var facebook : String?
     var email : String?
+    var canUpDate : Bool?
+    var nameAuthor : String?
+    var passAuthor : String?
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,6 +84,34 @@ class WhereViewController: UITableViewController, MKMapViewDelegate, CLLocationM
             phoneTextField.enabled = false
         }
         
+        if  Keychain.get("name") != nameAuthor && Keychain.get("pass") != passAuthor
+        {
+            companyTextField.enabled = false
+            addressTextField.enabled = false
+            websiteTextField.enabled = false
+            twitterTextField.enabled = false
+            facebookTextField.enabled = false
+            emailTextField.enabled = false
+            phoneTextField.enabled = false
+        }
+        else
+        {
+            if Keychain.get("role") == "pro" || Keychain.get("role") == "admin"
+            {
+                if  canUpDate == true
+                {
+                    companyTextField.enabled = true
+                    addressTextField.enabled = true
+                    websiteTextField.enabled = true
+                    twitterTextField.enabled = true
+                    facebookTextField.enabled = true
+                    emailTextField.enabled = true
+                    phoneTextField.enabled = true
+
+                }
+            }
+        }
+    
         var geocoder:CLGeocoder = CLGeocoder()
         geocoder.geocodeAddressString(location, completionHandler: {(placemarks, error) -> Void in
             
