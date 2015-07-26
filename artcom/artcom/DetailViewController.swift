@@ -133,6 +133,7 @@ class DetailViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let navigationController = segue.destinationViewController as! UINavigationController
         
@@ -141,10 +142,32 @@ class DetailViewController: UITableViewController {
         if segue.identifier == "search" {
             let vc = navigationController.topViewController as! WhereViewController
             println("Search")
+            
+           unArticle?.setId(id!)
+//            unArticle?.setTitle(titleTextField.text)
+//            unArticle?.setSubtitle(subtitleTextField.text)
+//            unArticle?.setCategory(categoryTextField.text.toInt()!)
+//            unArticle?.setText(textTextView.text)
+//            unArticle?.setRate(rateTextField.text.toInt()!)
+//            
+           vc.id = unArticle?.getId()
+//            vc.titleT = unArticle?.getTitle()
+//            vc.sub = unArticle?.getSubtitle()
+//            vc.category = unArticle?.getCategory()
+//            vc.text = unArticle?.getText()
+//            vc.rate = unArticle?.getRate()
+            // complément
+            vc.name = name
+            vc.pass = pass
+            vc.company = self.company!
             vc.address = self.number!.description + ", "
             vc.address = vc.address! + self.street! + ", "
             vc.address = vc.address! + self.zip!.description + ", " + self.city!
-            vc.company = self.company!
+            
+            vc.number = self.number?.description
+            vc.street = self.street
+            vc.zip = self.zip?.description
+            vc.city = self.city
             vc.website = self.website!
             vc.twitter = self.twitter!
             vc.facebook = self.facebook!

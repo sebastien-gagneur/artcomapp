@@ -27,10 +27,16 @@ class SettingViewController: UITableViewController, APIControllerProtocol, UITex
     @IBOutlet var roleTextField: UITextField!
     @IBOutlet var rateTextField: UITextField!
     
+    @IBOutlet var cancelButton: UIButton!
+    
     var unUser : User?
     var URL : String?
     // point d'entrée dans les settings :
     var SignIn : Bool = false // false : on arrive par le login, true on arrive par le signin
+    var execute : Bool?
+    
+    var nameForSignIn : String?
+    var passForSignIn : String?
     
     var api: APIController = APIController()
     
@@ -70,22 +76,69 @@ class SettingViewController: UITableViewController, APIControllerProtocol, UITex
         // je recherche les informations sur l'utilisateur
         if (nameTextField.text != "" && passTextField != "")
         {
-        URL = "http://techspeech.alwaysdata.net/apiartcom/artcom/users/root/QMBD35BEI/" + nameTextField.text + "/" + passTextField.text + "/user/" + nameTextField.text
-        self.api.GetAPIResultsAsync(URL)
-        println(URL)
+            self.cancelButton.hidden = true
+            URL = "http://techspeech.alwaysdata.net/apiartcom/artcom/users/root/QMBD35BEI/" + nameTextField.text + "/" + passTextField.text + "/user/" + nameTextField.text
+            self.api.GetAPIResultsAsync(URL)
+            println(URL)
         }
         // sinon je dois créer un compte
         else
         {
-            let alertController = UIAlertController(title: "You must create an account", message:
-                "Fill all fields and press Done", preferredStyle: UIAlertControllerStyle.Alert)
-            alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default,handler: nil))
             SignIn = true // on arrive par le sign in
+            nameTextField.text = nameForSignIn
+            passTextField.text = passForSignIn
+            
+            let alertController = UIAlertController(title: "NEW ACCOUNT ! You must create your account", message:
+                "Fill all fields and press Done. You can CANCEL this operation, PRESS cancel button at the bottom of this view", preferredStyle: UIAlertControllerStyle.Alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default,handler: nil))
             self.presentViewController(alertController, animated: true, completion: nil)
         }
         // Do any additional setup after loading the view, typically from a nib.
     }
     
+    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
+        execute = true
+        
+        if (identifier == "GotoArticles")
+        {
+            if nameTextField.text == ""
+            {
+                execute = false
+            }
+            if passTextField.text == ""
+            {
+                execute = false
+            }
+            if companyTextField.text == ""
+            {
+                execute = false
+            }
+            if numberTextField.text == "0"
+            {
+                execute = false
+            }
+            if streetTextField.text == ""
+            {
+                execute = false
+            }
+            if zipTextField.text == "0"
+            {
+               execute = false
+            }
+            if cityTextField.text == ""
+            {
+                execute = false
+            }
+            if execute == false
+            {
+            let alertController = UIAlertController(title: "You must fill following fields", message:
+                "name, pass, company, number, street, zip, city must be not blank !", preferredStyle: UIAlertControllerStyle.Alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default,handler: nil))
+            self.presentViewController(alertController, animated: true, completion: nil)
+            }
+        }
+            return execute!
+    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "GotoArticles")
@@ -195,6 +248,7 @@ class SettingViewController: UITableViewController, APIControllerProtocol, UITex
         return true
     }
     
+    // A supprimer ????
     @IBAction func clickDoneButton(sender: UIBarButtonItem) {
         // mise à jour du compte si déjà authentifié, sinon création du compte
         println("DONE")

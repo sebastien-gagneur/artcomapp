@@ -16,7 +16,14 @@ class WhereViewController: UITableViewController, MKMapViewDelegate, CLLocationM
     
     @IBOutlet var companyTextField: UITextField!
     
-    @IBOutlet var addressTextField: UITextField!
+
+    @IBOutlet var numberTextField: UITextField!
+    
+    @IBOutlet var streetTextField: UITextField!
+    
+    @IBOutlet var zipTextField: UITextField!
+    
+    @IBOutlet var cityTextField: UITextField!
     
     @IBOutlet var mapView: MKMapView!
     
@@ -30,7 +37,13 @@ class WhereViewController: UITableViewController, MKMapViewDelegate, CLLocationM
     
     @IBOutlet var phoneTextField: UITextField!
     
-    
+    var id : String?
+//    var titleT : String?
+//    var sub : String?
+//    var category : Int?
+//    var text : String?
+//    var rate : Int?
+    //complément
     var address : String?
     var name : String?
     var pass : String?
@@ -49,12 +62,18 @@ class WhereViewController: UITableViewController, MKMapViewDelegate, CLLocationM
     var nameAuthor : String?
     var passAuthor : String?
    
+    var unArticle : Article?
+    var URL : String?
+    var api: APIController = APIController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        unArticle = Article(id: "", title: "", subtitle: "", category: 0, text: "", image: UIImage(), rate: 0, company : "", number: 0, street: "", zip: 0, city: "", phone: "", website: "", twitter: "", facebook: "", email: "", nameAuthor : "", passAuthor : "")
+        
         println("add \(address) \(company)")
         var locationManager = CLLocationManager()
         locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
+        //locationManager.requestWhenInUseAuthorization()
         //locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
         
@@ -66,7 +85,12 @@ class WhereViewController: UITableViewController, MKMapViewDelegate, CLLocationM
         
         let location = self.address
         companyTextField.text = self.company
-        addressTextField.text = self.address
+        //addressTextField.text = self.address
+        numberTextField.text = number
+        streetTextField.text = street
+        zipTextField.text = zip
+        cityTextField.text = city
+        
         websiteTextField.text = self.website
         twitterTextField.text = self.twitter
         facebookTextField.text = self.facebook
@@ -76,7 +100,11 @@ class WhereViewController: UITableViewController, MKMapViewDelegate, CLLocationM
         if  Keychain.get("role") == "public"
         {
             companyTextField.enabled = false
-            addressTextField.enabled = false
+            //addressTextField.enabled = false
+            numberTextField.enabled = false
+            streetTextField.enabled = false
+            zipTextField.enabled = false
+            cityTextField.enabled = false
             websiteTextField.enabled = false
             twitterTextField.enabled = false
             facebookTextField.enabled = false
@@ -87,7 +115,11 @@ class WhereViewController: UITableViewController, MKMapViewDelegate, CLLocationM
         if  Keychain.get("name") != nameAuthor && Keychain.get("pass") != passAuthor
         {
             companyTextField.enabled = false
-            addressTextField.enabled = false
+            //addressTextField.enabled = false
+            numberTextField.enabled = false
+            streetTextField.enabled = false
+            zipTextField.enabled = false
+            cityTextField.enabled = false
             websiteTextField.enabled = false
             twitterTextField.enabled = false
             facebookTextField.enabled = false
@@ -101,7 +133,11 @@ class WhereViewController: UITableViewController, MKMapViewDelegate, CLLocationM
                 if  canUpDate == true
                 {
                     companyTextField.enabled = true
-                    addressTextField.enabled = true
+                    //addressTextField.enabled = true
+                    numberTextField.enabled = true
+                    streetTextField.enabled = true
+                    zipTextField.enabled = true
+                    cityTextField.enabled = true
                     websiteTextField.enabled = true
                     twitterTextField.enabled = true
                     facebookTextField.enabled = true
@@ -152,8 +188,53 @@ class WhereViewController: UITableViewController, MKMapViewDelegate, CLLocationM
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "save" {
-            //            unContact = Contact(nom: nomTextField.text, prenom:prenomTextField.text, adresse: adresseTextField.text, mail : mailTextField.text, photo : UIImage())
+        if (segue.identifier == "GotoViewFromWhere") {
+            println("GotoViewFromWhere")
+            
+           unArticle?.setId(id!)
+//            unArticle?.setTitle(titleT!)
+//            unArticle?.setSubtitle(sub!)
+//            unArticle?.setCategory(category!)
+//            unArticle?.setText(text!)
+//            unArticle?.setRate(rate!)
+            // complément
+            unArticle!.setCompany(companyTextField.text)
+            if (numberTextField.text == "")
+            {
+                unArticle!.setNumber(0)
+            }
+            else
+            {
+                unArticle!.setNumber(numberTextField.text.toInt()!)
+            }
+            unArticle!.setStreet(streetTextField.text)
+            if zipTextField.text == ""
+            {
+                unArticle!.setZip(0)
+            }
+            else
+            {
+                unArticle!.setZip(zipTextField.text.toInt()!)
+            }
+            unArticle!.setCity(cityTextField.text)
+            unArticle!.setPhone(phoneTextField.text)
+            unArticle!.setWebsite(websiteTextField.text)
+            unArticle!.setTwitter(twitterTextField.text)
+            unArticle!.setFacebook(facebookTextField.text)
+            unArticle!.setEmail(emailTextField.text)
+            
+            
+            URL = "http://techspeech.alwaysdata.net/apiartcom/artcom/articles/admin/9XTN#ztXmFnWH&/" + name! + "/" + pass! + "/updatearticles2/"
+            
+            URL = URL! + unArticle!.getId() + "?company=" + unArticle!.getCompany() + "&number="
+            
+            URL = URL! + String(unArticle!.getNumber()) + "&street=" + unArticle!.getStreet()
+            URL = URL! + "&zip=" + String(unArticle!.getZip()) + "&city=" + unArticle!.getCity()
+            URL = URL! + "&phone=" + unArticle!.getPhone() + "&website=" + unArticle!.getWebsite()
+            URL = URL! + "&twitter=" + unArticle!.getTwitter() + "&facebook=" + unArticle!.getFacebook()
+            URL = URL! + "&email=" + unArticle!.getEmail()
+            println(URL)
+            self.api.PutAPIResultsAsync(URL)
         }
         
     }
